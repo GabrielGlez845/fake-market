@@ -19,5 +19,6 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/muebleria';
 } else {
     urlDB = process.env.MONGO_URI;
+    console.log('base de datos online')
 }
 process.env.URLDB = urlDB;
