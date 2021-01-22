@@ -19,7 +19,8 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = 'mongodb://localhost:27017/muebleria';
     // urlDB = 'mongodb://localhost:27017/muebleria';
 } else {
-    urlDB = process.env.MONGO_URI;
+    urlDB = 'mongodb+srv://Gabo:JfQcoZDNxRwyEeO3@cluster0.lvj4b.mongodb.net/Muebleria';
     console.log('base de datos online')
+    console.log(process.env.MONGO_URI);
 }
 process.env.URLDB = urlDB;
