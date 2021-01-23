@@ -1,12 +1,12 @@
 const express = require('express');
 const _ = require('underscore');
-
+const { cors } = require('../midlewares/cors');
 const Mueble = require('../models/mueble');
 
 const app = express();
 
 //Mostrar todos los muebles 
-app.get('/muebles', (req, res) => {
+app.get('/muebles', cors, (req, res) => {
 
     //Parametros opcionales 
     let desde = req.query.desde || 0;
