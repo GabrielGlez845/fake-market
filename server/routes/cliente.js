@@ -1,12 +1,12 @@
 const express = require('express');
 const _ = require('underscore');
-
+const { cors } = require('../midlewares/cors');
 const Cliente = require('../models/cliente');
 
 const app = express();
 
 
-app.get('/cliente', (req, res) => {
+app.get('/cliente', cors, (req, res) => {
 
 
     let desde = req.query.desde || 0;
@@ -43,7 +43,7 @@ app.get('/cliente', (req, res) => {
 
 });
 
-app.post('/cliente', function(req, res) {
+app.post('/cliente', cors, function(req, res) {
 
     let body = req.body;
 
@@ -76,7 +76,7 @@ app.post('/cliente', function(req, res) {
 
 });
 
-app.put('/cliente/:id', function(req, res) {
+app.put('/cliente/:id', cors, function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['telefono', 'calle', 'colonia', 'estado']);
@@ -101,7 +101,7 @@ app.put('/cliente/:id', function(req, res) {
 
 });
 
-app.delete('/cliente/:id', function(req, res) {
+app.delete('/cliente/:id', cors, function(req, res) {
 
 
     let id = req.params.id;

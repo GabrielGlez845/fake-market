@@ -44,7 +44,7 @@ app.get('/muebles', cors, (req, res) => {
 });
 
 //Segun su categoria 
-app.get('/muebles/:categoria', (req, res) => {
+app.get('/muebles/:categoria', cors, (req, res) => {
 
     let Categoria = req.params.categoria;
     //Parametros opcionales 
@@ -83,7 +83,7 @@ app.get('/muebles/:categoria', (req, res) => {
 });
 
 //Segun su categoria y tipo
-app.get('/muebles/:categoria/:tipo', (req, res) => {
+app.get('/muebles/:categoria/:tipo', cors, (req, res) => {
 
     let Categoria = req.params.categoria;
     let Tipo = req.params.tipo;
@@ -125,7 +125,7 @@ app.get('/muebles/:categoria/:tipo', (req, res) => {
 
 //Dont matters
 //Agregar un nuevo mueble
-app.post('/muebles', function(req, res) {
+app.post('/muebles', cors, function(req, res) {
 
     let body = req.body;
 
@@ -160,7 +160,7 @@ app.post('/muebles', function(req, res) {
 
 });
 //Modificar el precio y si tiene una oferta
-app.put('/muebles/:id', function(req, res) {
+app.put('/muebles/:id', cors, function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['precio', 'oferta']);
@@ -187,7 +187,7 @@ app.put('/muebles/:id', function(req, res) {
 
 
 //Modificar la cantidad de un mueble
-app.put('/muebles/:id', function(req, res) {
+app.put('/muebles/:id', cors, function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['cantidad']);
@@ -213,7 +213,7 @@ app.put('/muebles/:id', function(req, res) {
 });
 
 //Elimiar un mueble
-app.delete('/muebles/:id', function(req, res) {
+app.delete('/muebles/:id', cors, function(req, res) {
 
 
     let id = req.params.id;
