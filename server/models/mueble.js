@@ -8,11 +8,6 @@ let muebleSchema = new Schema({
         type: String,
         required: [true, 'El nombre es necesario']
     },
-    codigo: {
-        type: String,
-        unique: true,
-        required: [true, 'El codigo es necesario']
-    },
     categoria: { //Categora principal
         type: String,
         required: [true, 'La categoria es necesaria']

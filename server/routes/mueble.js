@@ -131,7 +131,6 @@ app.post('/muebles', function(req, res) {
 
     let mueble = new Mueble({
         nombre: body.nombre,
-        codigo: body.codigo,
         categoria: body.categoria,
         tipo: body.tipo,
         img: body.img,
