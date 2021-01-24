@@ -5,41 +5,49 @@ const Mueble = require('../models/mueble');
 
 const app = express();
 
-//Mostrar todos los muebles 
-app.get('/muebles', cors, (req, res) => {
+//Mostrar  los muebles por un id 
+app.get('/muebles/:id', cors, (req, res) => {
 
-    //Parametros opcionales 
-    let desde = req.query.desde || 0;
-    desde = Number(desde);
+    let id = req.params.id;
 
-    let limite = req.query.limite || 5;
-    limite = Number(limite);
+    Mueble.findById(id, (err, muebleDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            });
+        }
+        res.json({
+            ok: true,
+            mueble: muebleDB
+        });
+    })
 
-    Mueble.find({})
-        .skip(desde)
-        .limit(limite)
-        .exec((err, muebles) => {
+    /*
+        Mueble.find({ _id: id })
+            .exec((err, muebles) => {
 
-            if (err) {
-                return res.status(400).json({
-                    ok: false,
-                    err
+                if (err) {
+                    return res.status(400).json({
+                        ok: false,
+                        err
+                    });
+                }
+
+                Mueble.count((err, conteo) => {
+
+                    res.json({
+                        ok: true,
+                        muebles,
+                        cuantos: conteo
+                    });
+
                 });
-            }
 
-            Mueble.count((err, conteo) => {
-
-                res.json({
-                    ok: true,
-                    muebles,
-                    cuantos: conteo
-                });
 
             });
 
-
-        });
-
+    */
 
 });
 
@@ -51,7 +59,7 @@ app.get('/muebles/:categoria', cors, (req, res) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    let limite = req.query.limite || 5;
+    let limite = req.query.limite || 7;
     limite = Number(limite);
 
     Mueble.find({ categoria: Categoria })
@@ -91,7 +99,7 @@ app.get('/muebles/:categoria/:tipo', cors, (req, res) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    let limite = req.query.limite || 5;
+    let limite = req.query.limite || 8;
     limite = Number(limite);
 
     Mueble.find({ categoria: Categoria, tipo: Tipo })
