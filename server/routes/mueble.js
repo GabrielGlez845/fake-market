@@ -6,7 +6,7 @@ const Mueble = require('../models/mueble');
 const app = express();
 
 //Mostrar  los muebles por un id 
-app.get('/muebles/:id', cors, (req, res) => {
+app.get('/mueble/:id', cors, (req, res) => {
 
     let id = req.params.id;
 
@@ -59,13 +59,13 @@ app.get('/muebles/:categoria', cors, (req, res) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    let limite = req.query.limite || 7;
+    let limite = req.query.limite || 3;
     limite = Number(limite);
 
     Mueble.find({ categoria: Categoria })
         .skip(desde)
         .limit(limite)
-        .exec((err, muebles) => {
+        .exec((err, mueblesDB) => {
 
             if (err) {
                 return res.status(400).json({
@@ -78,7 +78,7 @@ app.get('/muebles/:categoria', cors, (req, res) => {
 
                 res.json({
                     ok: true,
-                    muebles,
+                    muebles: mueblesDB,
                     cuantos: conteo
                 });
 
